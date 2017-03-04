@@ -41,6 +41,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TraceActivity"
+            android:label="@string/title_activity_trace"></activity>
     </application>
 
 </manifest>

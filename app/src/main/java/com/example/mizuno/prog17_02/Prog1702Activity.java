@@ -2,14 +2,17 @@ package com.example.mizuno.prog17_02;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.telephony.TelephonyManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,6 +27,7 @@ public class Prog1702Activity extends FragmentActivity implements OnMapReadyCall
     private GoogleMap mMap;
     private LocationManager locationManager;
     private String android_id;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,15 @@ public class Prog1702Activity extends FragmentActivity implements OnMapReadyCall
 
         TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         android_id = android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Prog1702Activity.this, TraceActivity.class);
+                intent.putExtra("device_id", android_id);
+                startActivity(intent);
+            }
+        });
     }
 
 
